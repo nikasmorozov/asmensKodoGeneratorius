@@ -94,22 +94,20 @@ public class Main {
             day = scanner.nextInt();
         } while (day > daysInMonth);
 
-//        validation for no future date
-        LocalDate now = LocalDate.now();
-        String basicIsoDate = now.format(DateTimeFormatter.BASIC_ISO_DATE);
-
+//        validating if date is not in the future
         Date date = new Date();
-        System.out.println(date);
 
         Date dateToCheck = new SimpleDateFormat("yyyyMMdd").parse(String.format("%04d", year) + String.format("%02d", month) + String.format("%02d", day));
-        System.out.println(date.after(dateToCheck));
+        if(!date.after(dateToCheck)){
+            System.out.println("Ivesta data yra ateityje.");
+        }
 
         int count = random.nextInt(999);
-        System.out.println(count);
+        System.out.println("random counter: " + count);
 
         String personalCode = gender + String.format("%04d", year).substring(2) + String.format("%02d", month) + String.format("%02d", day) + String.format("%02d", count);
 
-        System.out.println(personalCode);
+        System.out.println("personal code without validation number at the end: " + personalCode);
 
         int s = 0;
         int t;
@@ -124,8 +122,6 @@ public class Main {
         }
         int k;
 
-        System.out.println("s: " + s);
-
         if (s % 11 == 10) {
             s = 0;
             for (int i = 0; i < 10; i++) {
@@ -136,7 +132,6 @@ public class Main {
                 }
                 s = s + t;
             }
-            System.out.println(s);
             if (s % 11 == 10) {
                 k = 0;
             } else {
@@ -146,7 +141,7 @@ public class Main {
             k = s % 11;
         }
 
-        System.out.println("k: " + k);
+        System.out.println("validation number k: " + k);
 
         personalCode = personalCode + Integer.valueOf(k);
 
