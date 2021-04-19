@@ -2,9 +2,6 @@ package lt.niko;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
@@ -113,10 +110,11 @@ public class Main {
         int t;
 
         for (int i = 0; i < 10; i++) {
+            int iSub = Integer.parseInt(personalCode.substring(i, i + 1));
             if (i == 9) {
-                t = Integer.parseInt(personalCode.substring(i, i + 1)) * (i - 8);
+                t = iSub * (i - 8);
             } else {
-                t = Integer.parseInt(personalCode.substring(i, i + 1)) * (i + 1);
+                t = iSub * (i + 1);
             }
             s = s + t;
         }
@@ -125,10 +123,11 @@ public class Main {
         if (s % 11 == 10) {
             s = 0;
             for (int i = 0; i < 10; i++) {
+                int iSub = Integer.parseInt(personalCode.substring(i, i + 1));
                 if (i > 6) {
-                    t = Integer.parseInt(personalCode.substring(i, i + 1)) * (i - 6);
+                    t = iSub * (i - 6);
                 } else {
-                    t = Integer.parseInt(personalCode.substring(i, i + 1)) * (i + 3);
+                    t = iSub * (i + 3);
                 }
                 s = s + t;
             }
@@ -143,7 +142,7 @@ public class Main {
 
         System.out.println("validation number k: " + k);
 
-        personalCode = personalCode + Integer.valueOf(k);
+        personalCode = personalCode + k;
 
         System.out.println("final personal code: " + personalCode);
 
